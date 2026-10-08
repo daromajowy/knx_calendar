@@ -24,6 +24,7 @@ const safeColor = (c, fallback = '#64748b') => HEX.test(c || '') ? c : fallback;
 const MONTHS = ['styczeń','luty','marzec','kwiecień','maj','czerwiec','lipiec','sierpień','wrzesień','październik','listopad','grudzień'];
 const MONTHS_GEN = ['stycznia','lutego','marca','kwietnia','maja','czerwca','lipca','sierpnia','września','października','listopada','grudnia'];
 const WD = ['Pn','Wt','Śr','Cz','Pt','So','Nd'];
+const WD_FULL = ['Poniedziałek','Wtorek','Środa','Czwartek','Piątek','Sobota','Niedziela'];
 const WD_LONG = ['niedziela','poniedziałek','wtorek','środa','czwartek','piątek','sobota'];
 const pad = n => String(n).padStart(2, '0');
 const iso = d => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
@@ -279,7 +280,7 @@ function renderApp() {
       </div>
     </header>
     ${state.banner ? `<div class="banner error" role="alert">${esc(state.banner)} <button class="btn" id="retry">Spróbuj ponownie</button></div>` : ''}
-    <div class="weekdays">${WD.map((d, i) => `<div class="${i > 4 ? 'weekend' : ''}">${d}</div>`).join('')}</div>
+    <div class="weekdays">${WD.map((d, i) => `<div class="${i > 4 ? 'weekend' : ''}"><span class="wd-full">${WD_FULL[i]}</span><span class="wd-short">${d}</span></div>`).join('')}</div>
     <div class="grid" id="grid"></div>
     <button class="fab" id="fab" aria-label="Dodaj wydarzenie">${icon('plus')}</button>
   </div>`;
